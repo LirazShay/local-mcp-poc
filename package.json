@@ -1,0 +1,26 @@
+{
+  "name": "local-mcp-poc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal local MCP proof of concept for validating ChatGPT-to-local-tool round trips.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "inspect": "npx @modelcontextprotocol/inspector npx tsx src/index.ts",
+    "test": "node --test --import tsx test/poc.test.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
