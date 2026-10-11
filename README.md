@@ -1,10 +1,10 @@
 # Local MCP POC
 
-POC קטן ומבודד שמטרתו להוכיח את כל היכולות הטכניות שנצטרך בהמשך כדי לאפשר ל־ChatGPT לעבוד בלולאה עם כלים שרצים מקומית במחשב — בלי OpenAI API בתוך הקוד ובלי תלות ב־Market Flow US.
+`POC` קטן ומבודד שמטרתו להוכיח את כל היכולות הטכניות שנצטרך בהמשך כדי לאפשר ל־`ChatGPT` לעבוד בלולאה עם כלים שרצים מקומית במחשב — בלי `OpenAI API` בתוך הקוד ובלי תלות ב־`Market Flow US`.
 
-ה־POC **לא מבצע מסחר, לא מתחבר לשוק ולא נוגע בנתונים אמיתיים**. הוא בודק רק את שכבת החיבור וה־tool calls.
+ה־`POC` **לא מבצע מסחר, לא מתחבר לשוק ולא נוגע בנתונים אמיתיים**. הוא בודק רק את שכבת החיבור וה־`tool calls`.
 
-## מה ה־POC מוכיח
+## מה ה־`POC` מוכיח
 
 אחרי שנשלים את כל הבדיקות, נדע שהמסלול הבא עובד:
 
@@ -24,21 +24,21 @@ ChatGPT can reason and call another tool
 
 היכולות שנבדקות:
 
-1. חיבור לשרת MCP מקומי.
-2. גילוי tools.
-3. שליחת arguments מובנים מהלקוח לשרת.
-4. computation שמתבצע מקומית ולא בתוך המודל.
-5. state שנכתב ונקרא מהמחשב.
-6. כמה tool calls עוקבים באותה משימה.
-7. העברת payload טקסטואלי בגודל משמעותי.
-8. tool שאינו מסתיים מיד.
-9. failure מכוון והחזרת `isError` תקינה.
+1. חיבור לשרת `MCP` מקומי.
+2. גילוי `tools`.
+3. שליחת `arguments` מובנים מהלקוח לשרת.
+4. `computation` שמתבצע מקומית ולא בתוך המודל.
+5. `state` שנכתב ונקרא מהמחשב.
+6. כמה `tool calls` עוקבים באותה משימה.
+7. העברת `payload` טקסטואלי בגודל משמעותי.
+8. `tool` שאינו מסתיים מיד.
+9. `failure` מכוון והחזרת `isError` תקינה.
 
 ---
 
 # דרישות
 
-## 1. Node.js
+## 1. `Node.js`
 
 נדרש:
 
@@ -46,16 +46,16 @@ ChatGPT can reason and call another tool
 Node.js 20+
 ```
 
-בדיקה ב־PowerShell או CMD:
+בדיקה ב־`PowerShell` או `CMD`:
 
 ```powershell
 node --version
 npm --version
 ```
 
-אם `node` אינו מוכר, התקן Node.js LTS ואז פתח terminal חדש.
+אם `node` אינו מוכר, התקן `Node.js LTS` ואז פתח `terminal` חדש.
 
-## 2. clone
+## 2. `clone`
 
 ```powershell
 git clone https://github.com/LirazShay/local-mcp-poc.git
@@ -66,17 +66,17 @@ cd local-mcp-poc
 
 # התקנה
 
-מתוך root של הריפו:
+מתוך `root` של הריפו:
 
 ```powershell
 npm install
 ```
 
-אין צורך ב־API key ואין `.env`.
+אין צורך ב־`API key` ואין `.env`.
 
 ---
 
-# בדיקה 1 — unit tests
+# בדיקה 1 — `unit tests`
 
 הרץ:
 
@@ -84,7 +84,7 @@ npm install
 npm test
 ```
 
-Expected result: כל הטסטים עוברים.
+תוצאה צפויה: כל הטסטים עוברים.
 
 הבדיקות מכסות את הלוגיקה המקומית של:
 
@@ -98,11 +98,11 @@ delay
 
 ---
 
-# בדיקה 2 — MCP Inspector
+# בדיקה 2 — `MCP Inspector`
 
-זו הבדיקה הראשונה של MCP אמיתי.
+זו הבדיקה הראשונה של `MCP` אמיתי.
 
-הדרך הפשוטה ב־Windows:
+הדרך הפשוטה ב־`Windows`:
 
 ```text
 RUN_INSPECTOR.cmd
@@ -114,9 +114,9 @@ RUN_INSPECTOR.cmd
 npm run inspect
 ```
 
-הפקודה מפעילה את MCP Inspector ומבקשת ממנו להפעיל את שרת ה־stdio שלנו.
+הפקודה מפעילה את `MCP Inspector` ומבקשת ממנו להפעיל את שרת ה־`stdio` שלנו.
 
-בחלון ה־Inspector:
+בחלון ה־`Inspector`:
 
 1. התחבר לשרת אם נדרש ללחוץ `Connect`.
 2. פתח `Tools`.
@@ -133,9 +133,9 @@ delay
 fail_test
 ```
 
-## בדיקות מומלצות בתוך Inspector
+## בדיקות מומלצות בתוך `Inspector`
 
-### ping
+### `ping`
 
 קרא:
 
@@ -143,7 +143,7 @@ fail_test
 ping
 ```
 
-Expected:
+תוצאה צפויה:
 
 ```json
 {
@@ -153,9 +153,9 @@ Expected:
 }
 ```
 
-### add
+### `add`
 
-Arguments:
+`Arguments`:
 
 ```json
 {
@@ -164,7 +164,7 @@ Arguments:
 }
 ```
 
-Expected:
+תוצאה צפויה:
 
 ```json
 {
@@ -174,9 +174,9 @@ Expected:
 }
 ```
 
-### analyze_numbers
+### `analyze_numbers`
 
-Arguments:
+`Arguments`:
 
 ```json
 {
@@ -184,13 +184,13 @@ Arguments:
 }
 ```
 
-Expected average:
+הממוצע הצפוי:
 
 ```text
 4.8
 ```
 
-### state
+### `state`
 
 הרץ:
 
@@ -221,19 +221,19 @@ get_value
 }
 ```
 
-Expected value:
+הערך הצפוי:
 
 ```text
 query-17
 ```
 
-ה־state נשמר מקומית ב:
+ה־`state` נשמר מקומית ב:
 
 ```text
 .local/state.json
 ```
 
-התיקייה מוחרגת מ־Git.
+התיקייה מוחרגת מ־`Git`.
 
 לאיפוס:
 
@@ -241,7 +241,7 @@ query-17
 RESET_STATE.cmd
 ```
 
-### failure
+### `failure`
 
 קרא:
 
@@ -249,17 +249,17 @@ RESET_STATE.cmd
 fail_test
 ```
 
-Expected: tool result שמסומן ככשל ומכיל:
+תוצאה צפויה: `tool result` שמסומן ככשל ומכיל:
 
 ```text
 POC_TEST_ERROR
 ```
 
-המטרה היא לוודא שכשל של tool אינו מפיל את שרת ה־MCP כולו.
+המטרה היא לוודא שכשל של `tool` אינו מפיל את שרת ה־`MCP` כולו.
 
-### delay
+### `delay`
 
-Arguments:
+`Arguments`:
 
 ```json
 {
@@ -267,7 +267,7 @@ Arguments:
 }
 ```
 
-Expected:
+תוצאה צפויה:
 
 ```json
 {
@@ -275,11 +275,11 @@ Expected:
 }
 ```
 
-הכלי מוגבל במכוון ל־5 שניות כדי שה־POC יישאר בטוח ומהיר.
+הכלי מוגבל במכוון ל־5 שניות כדי שה־`POC` יישאר בטוח ומהיר.
 
-### payload
+### `payload`
 
-`inspect_payload` אינו מחזיר את הטקסט עצמו אלא רק metadata שלו:
+`inspect_payload` אינו מחזיר את הטקסט עצמו אלא רק `metadata` שלו:
 
 ```text
 utf8Bytes
@@ -287,7 +287,7 @@ characters
 sha256
 ```
 
-אפשר להדביק טקסט גדול ולוודא שה־round trip עובד בלי להציף את התשובה באותו payload.
+אפשר להדביק טקסט גדול ולוודא שה־`round trip` עובד בלי להציף את התשובה באותו `payload`.
 
 ---
 
@@ -313,51 +313,51 @@ local-mcp-poc MCP server is running on stdio
 
 ואז התהליך ייראה כאילו הוא "מחכה". זה תקין.
 
-שרת `stdio` לא מאזין על port. הוא מחכה ש־MCP host יפעיל אותו ויתקשר איתו דרך stdin/stdout.
+שרת `stdio` לא מאזין על `port`. הוא מחכה ש־`MCP host` יפעיל אותו ויתקשר איתו דרך `stdin/stdout`.
 
-חשוב: stdout שייך לפרוטוקול MCP. לכן logging של השרת נעשה ל־stderr באמצעות `console.error`, ולא באמצעות `console.log`.
+חשוב: `stdout` שייך לפרוטוקול `MCP`. לכן `logging` של השרת נעשה ל־`stderr` באמצעות `console.error`, ולא באמצעות `console.log`.
 
 ---
 
-# חיבור ל־ChatGPT Desktop
+# חיבור ל־`ChatGPT Desktop`
 
 ## הערה חשובה על זמינות
 
-OpenAI מאפשרת plugins שכוללים local MCP apps שרצים על המחשב, אך השימוש בכלי local כאלה הוא ב־ChatGPT Desktop. זמינות מדויקת של Plugin Creator/local apps תלויה בתוכנית, rollout והרשאות החשבון/Workspace.
+`OpenAI` מאפשרת `plugins` שכוללים `local MCP apps` שרצים על המחשב, אך השימוש בכלי `local` כאלה הוא ב־`ChatGPT Desktop`. זמינות מדויקת של `Plugin Creator` ושל `local apps` תלויה בתוכנית, ב־`rollout` ובהרשאות החשבון או ה־`Workspace`.
 
-לכן קודם מוכיחים את השרת עם MCP Inspector. רק לאחר שהוא עובד עוברים לחיבור ChatGPT.
+לכן קודם מוכיחים את השרת עם `MCP Inspector`. רק לאחר שהוא עובד עוברים לחיבור `ChatGPT`.
 
 ## הדרך המומלצת
 
-1. פתח ChatGPT Desktop ב־Windows.
+1. פתח `ChatGPT Desktop` ב־`Windows`.
 2. פתח `Plugins`.
-3. התקן/פתח `Plugin Creator` אם הוא זמין אצלך.
-4. בקש ממנו ליצור plugin מקומי שמפעיל MCP server מסוג `stdio` מתוך הריפו הזה.
+3. התקן או פתח `Plugin Creator` אם הוא זמין אצלך.
+4. בקש ממנו ליצור `plugin` מקומי שמפעיל `MCP server` מסוג `stdio` מתוך הריפו הזה.
 5. תן לו את פקודת ההפעלה:
 
 ```text
 npx tsx src/index.ts
 ```
 
-וה־working directory צריך להיות ה־root המקומי של:
+וה־`working directory` צריך להיות ה־`root` המקומי של:
 
 ```text
 local-mcp-poc
 ```
 
-אם ה־UI של Plugin Creator מאפשר לבחור תיקייה/command, בחר את הנתיב המקומי של clone הריפו ואת הפקודה לעיל.
+אם ה־`UI` של `Plugin Creator` מאפשר לבחור תיקייה או `command`, בחר את הנתיב המקומי של `clone` הריפו ואת הפקודה לעיל.
 
-> לא מכניסים לריפו absolute path של המחשב שלך, כי הוא שונה ממחשב למחשב.
+> לא מכניסים לריפו `absolute path` של המחשב שלך, כי הוא שונה ממחשב למחשב.
 
-לאחר שה־plugin נוצר, פתח chat חדש והפעל/בחר אותו באמצעות `@` או דרך רשימת plugins, בהתאם ל־UI שמופיע אצלך.
+לאחר שה־`plugin` נוצר, פתח `chat` חדש והפעל או בחר אותו באמצעות `@` או דרך רשימת `plugins`, בהתאם ל־`UI` שמופיע אצלך.
 
 ---
 
-# בדיקת ChatGPT החשובה ביותר — multi-step loop
+# בדיקת `ChatGPT` החשובה ביותר — `multi-step loop`
 
-לא מספיק לבדוק `ping`. המטרה היא להוכיח ש־ChatGPT מסוגל לקבל תוצאה מכלי אחד, לחשוב עליה, ואז לבחור ולקרוא לכלי אחר.
+לא מספיק לבדוק `ping`. המטרה היא להוכיח ש־`ChatGPT` מסוגל לקבל תוצאה מכלי אחד, לחשוב עליה, ואז לבחור ולקרוא לכלי אחר.
 
-לאחר שה־plugin המקומי מחובר, שלח ל־ChatGPT את ההודעה הבאה:
+לאחר שה־`plugin` המקומי מחובר, שלח ל־`ChatGPT` את ההודעה הבאה:
 
 ```text
 השתמש בכלים של local-mcp-poc ובצע את כל השלבים בעצמך:
@@ -373,7 +373,7 @@ local-mcp-poc
 9. בסוף סכם אילו tool calls ביצעת ומה הוכח בכל שלב.
 ```
 
-## PASS
+## `PASS`
 
 הבדיקה עוברת רק אם ניתן לראות בפועל רצף דומה ל:
 
@@ -395,11 +395,11 @@ fail_test → expected error
 ping → still healthy
 ```
 
-הנקודה המרכזית היא שהערך שנשמר בשלב 5 צריך להיבחר **אחרי** שהמודל קיבל את תוצאת `analyze_numbers`. כלומר זו אינה רשימת tool calls קבועה מראש; יש dependency בין סבבים.
+הנקודה המרכזית היא שהערך שנשמר בשלב 5 צריך להיבחר **אחרי** שהמודל קיבל את תוצאת `analyze_numbers`. כלומר זו אינה רשימת `tool calls` קבועה מראש; יש `dependency` בין סבבים.
 
 ---
 
-# בדיקת payload דרך ChatGPT
+# בדיקת `payload` דרך `ChatGPT`
 
 אפשר לבקש:
 
@@ -407,15 +407,15 @@ ping → still healthy
 צור טקסט מקומי של בערך 20,000 תווים ושלח אותו ל-inspect_payload. אל תחזיר לי את כל הטקסט; החזר רק את ה-utf8Bytes, characters וה-sha256 שהכלי החזיר.
 ```
 
-אם זה עובד, הוכחנו שניתן להעביר ל־tool payload משמעותי ולקבל summary קטן בחזרה.
+אם זה עובד, הוכחנו שניתן להעביר ל־`tool` נתון `payload` משמעותי ולקבל `summary` קטן בחזרה.
 
-אין צורך להתחיל מ־100KB. אם 20KB עובר, אפשר להגדיל בהדרגה ל־50KB ואז ל־100KB כדי לבדוק את הגבולות בפועל בחשבון/host שלך.
+אין צורך להתחיל מ־`100KB`. אם `20KB` עובר, אפשר להגדיל בהדרגה ל־`50KB` ואז ל־`100KB` כדי לבדוק את הגבולות בפועל בחשבון או ב־`host` שלך.
 
 ---
 
 # מה לא נבדק עדיין
 
-גם אם כל ה־POC עובר, הוא עדיין לא מוכיח:
+גם אם כל ה־`POC` עובר, הוא עדיין לא מוכיח:
 
 ```text
 DuckDB
@@ -430,13 +430,13 @@ automatic trading
 
 וזה בכוונה.
 
-ה־POC מוכיח רק את ה־boundary הטכני:
+ה־`POC` מוכיח רק את ה־`boundary` הטכני:
 
 ```text
 model ↔ MCP ↔ local Node.js ↔ local computation/state
 ```
 
-אם הגבול הזה עובד, אפשר בשלב הבא להחליף בהדרגה את ה־toy tools בכלים אמיתיים כגון:
+אם הגבול הזה עובד, אפשר בשלב הבא להחליף בהדרגה את ה־`toy tools` בכלים אמיתיים כגון:
 
 ```text
 evaluate_sql
@@ -471,15 +471,15 @@ local-mcp-poc/
 
 ---
 
-# Troubleshooting
+# פתרון תקלות
 
-## `node` is not recognized
+## `node` אינו מזוהה
 
-Node.js אינו מותקן או שה־terminal הישן לא קיבל את PATH החדש.
+`Node.js` אינו מותקן או שה־`terminal` הישן לא קיבל את ה־`PATH` החדש.
 
-סגור ופתח terminal חדש לאחר התקנת Node.js.
+סגור ופתח `terminal` חדש לאחר התקנת `Node.js`.
 
-## Inspector לא רואה tools
+## ה־`Inspector` לא רואה `tools`
 
 הרץ קודם:
 
@@ -493,7 +493,7 @@ npm test
 npm run inspect
 ```
 
-ודא שאתה מריץ מתוך root של `local-mcp-poc`.
+ודא שאתה מריץ מתוך ה־`root` של `local-mcp-poc`.
 
 ## השרת נסגר מיד
 
@@ -503,9 +503,9 @@ npm run inspect
 npm start
 ```
 
-אם יש stack trace, שמור אותו. אם מופיעה רק הודעת `running on stdio` והחלון נשאר פתוח — זה מצב תקין.
+אם יש `stack trace`, שמור אותו. אם מופיעה רק הודעת `running on stdio` והחלון נשאר פתוח — זה מצב תקין.
 
-## state ישן מפריע לבדיקה
+## `state` ישן מפריע לבדיקה
 
 הרץ:
 
@@ -519,27 +519,27 @@ RESET_STATE.cmd
 .local/state.json
 ```
 
-## ChatGPT לא מציג local tools
+## `ChatGPT` לא מציג `local tools`
 
-קודם ודא שה־Inspector עובד. אם Inspector עובד אבל ChatGPT לא מציג את הכלים, הבעיה היא בשלב registration/plugin ולא בשרת עצמו.
+קודם ודא שה־`Inspector` עובד. אם ה־`Inspector` עובד אבל `ChatGPT` לא מציג את הכלים, הבעיה היא בשלב ה־`registration/plugin` ולא בשרת עצמו.
 
-בדוק שאתה משתמש ב־ChatGPT Desktop ושהחשבון שלך מציג Plugin Creator / local MCP capability. ה־UI והזמינות עשויים להשתנות לפי plan ו־rollout.
+בדוק שאתה משתמש ב־`ChatGPT Desktop` ושהחשבון שלך מציג `Plugin Creator` או יכולת `local MCP`. ה־`UI` והזמינות עשויים להשתנות לפי ה־`plan` וה־`rollout`.
 
 ---
 
-# Success criteria סופיים
+# קריטריוני הצלחה סופיים
 
-ה־POC נחשב מוצלח כאשר:
+ה־`POC` נחשב מוצלח כאשר:
 
 - `npm test` ירוק;
-- Inspector מציג את כל שמונת הכלים;
+- ה־`Inspector` מציג את כל שמונת הכלים;
 - `ping` עובד;
-- structured arguments עובדים ב־`add`;
-- local computation עובד ב־`analyze_numbers`;
-- `set_value` ואחריו `get_value` מוכיחים persistence;
-- `inspect_payload` מקבל payload משמעותי;
+- `structured arguments` עובדים ב־`add`;
+- `local computation` עובד ב־`analyze_numbers`;
+- `set_value` ואחריו `get_value` מוכיחים `persistence`;
+- `inspect_payload` מקבל `payload` משמעותי;
 - `delay` עובד;
 - `fail_test` נכשל בצורה צפויה והשרת נשאר פעיל;
-- ChatGPT מבצע multi-step sequence שבו tool call מאוחר תלוי בתוצאה של tool call מוקדם יותר.
+- `ChatGPT` מבצע `multi-step sequence` שבו `tool call` מאוחר תלוי בתוצאה של `tool call` מוקדם יותר.
 
-רק אחרי שכל אלה עוברים יש טעם לחבר את אותו pattern ל־Market Flow US.
+רק אחרי שכל אלה עוברים יש טעם לחבר את אותו `pattern` ל־`Market Flow US`.
